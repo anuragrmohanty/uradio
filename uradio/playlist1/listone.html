@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist | one</title>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+
+    :root {
+      --color: #faa700;
+      --color-light: #f5ede1;
+      --dark: #a7a7a7;
+      --dark: #8a8a8a;
+      --darker: #303030;
+      --sans-serif: "Roboto", sans-serif;
+    }
+
+    body {
+      font-family: var(--sans-serif);
+      background: #eeeeee;
+    }
+
+    body {
+      background: #131313;
+      overflow-x: hidden;
+    }
+
+    .background {
+      width: 100%;
+      height: 56.25vw;
+      background: url(https://cdn.klove.com/images/music/artists/bios/SkilletUnleashed.KLArtist.jpg) center/cover;
+      box-shadow: inset 0px -17vw 20vw 1vw #4b530d;
+      position: absolute;
+      top: 0;
+      z-index: -1;
+    }
+
+    .background img {
+      max-width: 100%;
+      max-height: 100vh;
+      box-shadow: inset 0px -17vw 30vw 1vw #131313;
+    }
+
+    .background+section {
+      margin-top: 60vmin;
+      background: transparent;
+      --dark: rgba(white, 0.5);
+      --dark: rgba(white, 0.6);
+      --darker: rgba(white, 0.8);
+    }
+
+    .background+section .bookmark {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .background+section .bookmark svg {
+      fill: #fff;
+    }
+
+    .background+section .album-tracks {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+    }
+
+    section {
+      background: #fafafa;
+      margin: 100px 56px;
+      padding: 20px 50px;
+      color: var(--darker);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    section .album-info:after {
+      content: " ";
+      display: block;
+      height: 0;
+      clear: both;
+    }
+
+    section .album-art {
+      float: left;
+      width: 220px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+
+    section .album-art * {
+      border-radius: 3px;
+    }
+
+    section .album-art img {
+      width: 100%;
+      margin-bottom: 10px;
+      margin-top: -80px;
+      box-shadow: 0 5px 60px -3px rgba(0, 0, 0, 0.18);
+    }
+
+    section .play {
+      display: flex;
+      flex-wrap: initial;
+      justify-content: center;
+      align-items: center;
+      align-content: initial;
+      color: white;
+      background: var(--color);
+      padding: 10px;
+      text-transform: uppercase;
+      flex: 1 0 50%;
+    }
+
+    section .bookmark {
+      display: flex;
+      flex-wrap: initial;
+      justify-content: center;
+      align-items: center;
+      align-content: initial;
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--color-light);
+      margin-left: 10px;
+    }
+
+    section .album-details>* {
+      padding: 10px 0;
+    }
+
+    section h2 {
+      display: flex;
+      flex-wrap: initial;
+      justify-content: initial;
+      align-items: center;
+      align-content: initial;
+      color: var(--dark);
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    section h2 img {
+      width: 24px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    section h1 {
+      font-size: 50px;
+      font-weight: 300;
+      word-wrap: break-word;
+    }
+
+    section h1+span {
+      color: var(--dark);
+    }
+
+    section h1+span span:first-child {
+      padding-right: 20px;
+    }
+
+    section p {
+      margin-top: 15px;
+    }
+
+    section .album-tracks {
+      background: #f8f8f8;
+      border: 1px solid #efefef;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 800px) {
+      section {
+        margin: 100px 36px 36px 36px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      section .album-art {
+        width: 100%;
+      }
+
+      section .album-art img {
+        width: auto;
+        max-width: 100%;
+        margin: -100px auto 10px auto;
+        display: block;
+      }
+
+      section .album-details {
+        float: left;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 550px) {
+      section {
+        margin: 100px 20px 20px 20px;
+        padding: 20px 16px;
+      }
+
+      section ol {
+        padding: 16px;
+      }
+    }
+
+    ol {
+      list-style-type: none;
+      padding: 20px 36px;
+      font-weight: 500;
+    }
+
+    ol li {
+      counter-increment: number;
+      display: flex;
+      flex-wrap: initial;
+      justify-content: space-between;
+      align-items: center;
+      align-content: initial;
+      height: 45px;
+      color: var(--dark);
+    }
+
+    ol li span:not(:last-child) {
+      margin-right: 2em;
+    }
+
+    @media (max-width: 700px) {
+      ol li span:not(:last-child) {
+        margin-right: 1em;
+      }
+    }
+
+    ol li span:first-child {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: var(--darker);
+    }
+
+    ol li span:first-child:before {
+      content: counter(number);
+      margin-right: 2em;
+      color: var(--dark);
+      display: inline-block;
+      text-align: end;
+      width: 20px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: initial;
+      justify-content: initial;
+      align-items: initial;
+      align-content: initial;
+      flex: 1 1 100%;
+    }
+
+    button {
+      height: 2.5rem;
+      width: 2.5rem;
+      background: white;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      margin: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    i {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+  <section>
+    <div class="album-info">
+      <div class="album-art">
+        <img class="item"
+          src="https://lh3.googleusercontent.com/0OynDYRoCaQWJIUyiOrUVeoub0mLNrDUcUZrJXF2WHQD77o-F_g2EnqZqVevO954WzD7mC5qTg=w512-h512-l90-rj" />
+      </div>
+      <div class="album-details">
+        <img src="youtuberadiologo.png" style="width: 15%;height: 7.5%;padding: 0;margin: 0;" />
+        <h1 style="margin-top: 1rem;">Unleashed</h1><span> <span>Hard Rock </span><span>&copy; 2016 Atlantic Recording
+            Corporation</span></span>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro amet perferendis consectetur nobis totam
+          tempora in, mollitia autem dignissimos, corrupti quam excepturi eius repellendus! Similique placeat
+          necessitatibus veniam? Asperiores cum repellat a provident iure libero inventore nam, nulla dicta quaerat,
+          dignissimos corrupti impedit alias consequuntur, eligendi itaque aspernatur officia reprehenderit.</p>
+      </div>
+    </div>
+    <div class="album-tracks">
+      <ol>
+        <li> <span>Doori</span>
+          <span>
+            <button id="r1" onclick="javascript:forwardRewind1(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play1" onclick="javascript:playsound1();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause1" onclick="javascript:pausesound1();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f1" onclick="forwardRewind1(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio1" src="music/all/Doori.mp3"></audio>
+          </span>
+        </li>
+        <li> <span>Ghar More Pardesiy</span>
+          <span>
+            <button id="r2" onclick="javascript:forwardRewind2(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play2" onclick="javascript:playsound2();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause2" onclick="javascript:pausesound2();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f2" onclick="forwardRewind2(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio2" src="music/all/Ghar More Pardesiy.mp3"></audio>
+          </span>
+        </li>
+        <li> <span>Khamoshiyan (From 'Khamoshiyan')</span>
+          <span>
+            <button id="r3" onclick="javascript:forwardRewind3(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play3" onclick="javascript:playsound3();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause3" onclick="javascript:pausesound3();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f3" onclick="forwardRewind3(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio3" src="music/all/Khamoshiyan (From 'Khamoshiyan').mp3"></audio>
+          </span>
+        </li>
+        <li> <span>Kyun Rabba</span>
+          <span>
+            <button id="r4" onclick="javascript:forwardRewind4(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play4" onclick="javascript:playsound4();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause4" onclick="javascript:pausesound4();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f4" onclick="forwardRewind4(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio4" src="music/all/Kyun Rabba.mp3"></audio>
+          </span>
+        </li>
+        <li> <span>Leja Re</span>
+          <span>
+            <button id="r5" onclick="javascript:forwardRewind5(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play5" onclick="javascript:playsound5();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause5" onclick="javascript:pausesound5();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f5" onclick="forwardRewind5(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio5" src="music/all/Leja Re.mp3"></audio>
+          </span>
+        </li>
+        <li> <span>Qaafirana</span>
+          <span>
+            <button id="r6" onclick="javascript:forwardRewind6(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play6" onclick="javascript:playsound6();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause6" onclick="javascript:pausesound6();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f6" onclick="forwardRewind6(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio6" src="music/all/Qaafirana.mp3"></audio>
+          </span>
+        </li>
+        <li> <span>Tujhe Kaise Pata Na Chala</span>
+          <span>
+            <button id="r7" onclick="javascript:forwardRewind7(-5);"><i class='bx bx-rewind'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="play7" onclick="javascript:playsound7();"><i class='bx bx-play'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="pause7" onclick="javascript:pausesound7();"><i class='bx bx-pause'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <button id="f7" onclick="forwardRewind7(5);"><i class='bx bx-fast-forward'
+                style='color:#000;font-size: 2rem;'></i></button>
+            <audio id="audio7" src="music/all/Tujhe Kaise Pata Na Chala.mp3"></audio>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+</body>
+<!--jquery cdn-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  //song1//
+  $(document).ready(function () {
+    $("#pause1").hide();
+    $('#r1').hide();
+    $('#f1').hide();
+    $("#play1").click(function () {
+      $("#play1").hide();
+      $("#pause1").show();
+      $('#r1').show();
+      $('#f1').show();
+    });
+    $("#pause1").click(function () {
+      $("#pause1").hide();
+      $("#play1").show();
+      $('#f1').hide();
+      $('#r1').hide();
+    });
+  });
+  //song2//
+  $(document).ready(function () {
+    $("#pause2").hide();
+    $('#r2').hide();
+    $('#f2').hide();
+    $("#play2").click(function () {
+      $("#play2").hide();
+      $("#pause2").show();
+      $('#r2').show();
+      $('#f2').show();
+    });
+    $("#pause2").click(function () {
+      $("#pause2").hide();
+      $("#play2").show();
+      $('#r2').hide();
+      $('#f2').hide();
+    });
+  });
+  //song3//
+  $(document).ready(function () {
+    $("#pause3").hide();
+    $('#r3').hide();
+    $('#f3').hide();
+    $("#play3").click(function () {
+      $("#play3").hide();
+      $("#pause3").show();
+      $('#r3').show();
+      $('#f3').show();
+    });
+    $("#pause3").click(function () {
+      $("#pause3").hide();
+      $("#play3").show();
+      $('#r3').hide();
+      $('#f3').hide();
+    });
+  });
+  //song4//
+  $(document).ready(function () {
+    $("#pause4").hide();
+    $('#r4').hide();
+    $('#f4').hide();
+    $("#play4").click(function () {
+      $("#play4").hide();
+      $("#pause4").show();
+      $('#r4').show();
+      $('#f4').show();
+    });
+    $("#pause4").click(function () {
+      $("#pause4").hide();
+      $("#play4").show();
+      $('#r4').hide();
+      $('#f4').hide();
+    });
+  });
+  //song5//
+  $(document).ready(function () {
+    $("#pause5").hide();
+    $('#r5').hide();
+    $('#f5').hide();
+    $("#play5").click(function () {
+      $("#play5").hide();
+      $("#pause5").show();
+      $('#r5').show();
+      $('#f5').show();
+    });
+    $("#pause5").click(function () {
+      $("#pause5").hide();
+      $("#play5").show();
+      $('#r5').hide();
+      $('#f5').hide();
+    });
+  });
+  //song6//
+  $(document).ready(function () {
+    $("#pause6").hide();
+    $('#r6').hide();
+    $('#f6').hide();
+    $("#play6").click(function () {
+      $("#play6").hide();
+      $("#pause6").show();
+      $('#r6').show();
+      $('#f6').show();
+    });
+    $("#pause6").click(function () {
+      $("#pause6").hide();
+      $("#play6").show();
+      $('#r6').hide();
+      $('#f6').hide();
+    });
+  });
+  //song7//
+  $(document).ready(function () {
+    $("#pause7").hide();
+    $('#r7').hide();
+    $('#f7').hide();
+    $("#play7").click(function () {
+      $("#play7").hide();
+      $("#pause7").show();
+      $('#r7').show();
+      $('#f7').show();
+    });
+    $("#pause7").click(function () {
+      $("#pause7").hide();
+      $("#play7").show();
+      $('#r7').hide();
+      $('#f7').hide();
+    });
+  });
+  //song1 functions//
+  function playsound1() {
+    var playElem = document.getElementById('audio1');
+    playElem.play();
+  }
+  function pausesound1() {
+    var pauseElem = document.getElementById('audio1');
+    pauseElem.pause();
+    pauseElem.currentTime = 0;
+  }
+  function forwardRewind1(param) {
+    var videoPlayer = document.getElementById("audio1");
+    videoPlayer.currentTime += param;
+  }
+  //song2 function//
+  function playsound2() {
+    var playElem = document.getElementById('audio2');
+    playElem.play();
+  }
+  function pausesound2() {
+    var pauseElem = document.getElementById('audio2');
+    pauseElem.pause();
+    pauseElem.currentTime = 0;
+  }
+  function forwardRewind2(param) {
+    var videoPlayer = document.getElementById("audio2");
+    videoPlayer.currentTime += param;
+  }
+  //song3 function//
+  function playsound3() {
+    var playElem = document.getElementById('audio3');
+    playElem.play();
+  }
+  function pausesound3() {
+    var pauseElem = document.getElementById('audio3');
+    pauseElem.pause(); pauseElem.currentTime = 0;
+  }
+  function forwardRewind3(param) {
+    var videoPlayer = document.getElementById("audio3");
+    videoPlayer.currentTime += param;
+  }
+  //song4 function//
+  function playsound4() {
+    var playElem = document.getElementById('audio4');
+    playElem.play();
+  }
+  function pausesound4() {
+    var pauseElem = document.getElementById('audio4');
+    pauseElem.pause(); pauseElem.currentTime = 0;
+  }
+  function forwardRewind4(param) {
+    var videoPlayer = document.getElementById('audio4');
+    videoPlayer.currentTime += param;
+  }
+  //song5 function//
+  function playsound5() {
+    var playElem = document.getElementById('audio5');
+    playElem.play();
+  }
+  function pausesound5() {
+    var pauseElem = document.getElementById('audio5');
+    pauseElem.pause(); pauseElem.currentTime = 0;
+  }
+  function forwardRewind5(param) {
+    var videoPlayer = document.getElementById("audio5");
+    videoPlayer.currentTime += param;
+  }
+  //song6 function//
+  function playsound6() {
+    var playElem = document.getElementById('audio6');
+    playElem.play();
+  }
+  function pausesound6() {
+    var pauseElem = document.getElementById('audio6');
+    pauseElem.pause(); pauseElem.currentTime = 0;
+  }
+  function forwardRewind6(param) {
+    var videoPlayer = document.getElementById("audio6");
+    videoPlayer.currentTime += param;
+  }
+  //song7 function//
+  function playsound7() {
+    var playElem = document.getElementById('audio7');
+    playElem.play();
+  }
+  function pausesound7() {
+    var pauseElem = document.getElementById('audio7');
+    pauseElem.pause(); pauseElem.currentTime = 0;
+  }
+  function forwardRewind7(param) {
+    var videoPlayer = document.getElementById("audio7");
+    videoPlayer.currentTime += param;
+  }
+</script>
+
+</html>
